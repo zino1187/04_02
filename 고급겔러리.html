@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+#mask{
+    width:200px;
+    height:200px;
+    margin: auto;
+    margin-top:150px;
+    background: red;
+    position: relative;
+    border:2px solid red;
+    overflow: hidden;
+    
+}    
+#container{
+    width:600px;
+    height:600px;
+    background:blue;
+    position: absolute;
+    left:0px;
+    top:0px;
+}
+</style>    
+<script src="../js/lib.js"></script>
+<script>
+var container;   
+var imgArray=[
+    "t1.jpg",
+    "t2.jpg",
+    "t3.jpg",
+    "t4.jpg",
+    "t5.jpg",
+    "t6.jpg",
+    "t7.jpg",
+    "t8.jpg",
+    "t9.jpg"
+];
+var n=0;
+var a=0.1;
+var targetX=0;
+var targetY=0;
+var posX = [0,-200,-400];
+var posY = [0,-200,-400];
+
+window.addEventListener("load", function(){
+    container = document.getElementById("container");
+    container.style.left=0+"px";
+    container.style.top=0+"px";
+
+    createImage();
+    setInterval("move()",25);
+    setInterval("setRandomPos()",2500);
+}); 
+
+function createImage(){
+    for(var a=0;a<3;a++){
+        for(var i=0;i<3;i++){
+            var img = document.createElement("img");
+            img.src = "../images/"+imgArray[n++];
+            img.style.width=200+"px";
+            img.style.height=200+"px";
+            img.style.position="absolute";
+            img.style.left=(i*200)+"px";
+            img.style.top=(a*200)+"px";
+
+            container.appendChild(img);
+        }
+    }
+}
+function setRandomPos(){
+    targetX = posX[getRandom(0,2)];
+    targetY = posY[getRandom(0,2)];
+}
+
+function move(){
+    container.style.left= parseFloat(container.style.left) + a*(targetX - parseFloat(container.style.left))+"px";    
+    container.style.top= parseFloat(container.style.top) + a*(targetY - parseFloat(container.style.top))+"px";    
+}
+</script>    
+</head>
+<body>
+    <div id="mask">
+        <div id="container"></div>
+    </div>    
+</body>
+</html>
