@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+#container{
+    width:600px;
+    height:600px;
+    background:black;
+    margin: auto;
+    position:relative;  /*자식땜에*/
+}    
+</style>    
+<script>
+var container;
+var arr=new Array();//크기가 정해져 있지 않다!!
+                            //고무줄 처럼 늘어남!!
+
+window.addEventListener("load", function(){
+    container = document.getElementById("container");
+    container.style.backgroundImage="url('../images/t1.jpg')";
+    container.style.backgroundSize="600px 600px";
+
+    createRect();
+});
+
+
+//사각셀을 생성하는 함수
+function createRect(){
+    for(var a=0;a<20;a++){
+        for(var i=0;i<20;i++){
+            var div = document.createElement("div");
+            div.style.width=28+"px";
+            div.style.height=28+"px";
+            div.style.border="1px solid red";
+            div.style.background="yellow";
+            div.style.position="absolute";
+            div.style.left=(i*30)+"px";
+            div.style.top=(a*30)+"px";
+            div.style.opacity=0.7;
+            container.appendChild(div);
+
+            //div에 이벤트 핸들러 구현 
+            div.addEventListener("mouseover",function(){
+                this.style.opacity=0;
+            });
+
+            //전역변수로 선언된 배열에 방금 태어난  div를 담아두자
+            arr.push(div);
+        }
+    }
+}
+function remove1(){
+    container.removeChild(arr[index]);//지정한 자식 요소를 제거!!    
+    setTimeout("remove1()",100);
+}
+
+function remove2(){
+    for(var i=0;i<arr.length;i++){
+        container.removeChild(arr[i]);//지정한 자식 요소를 제거!!    
+    }
+}
+</script>    
+</head>
+<body>
+    <button onClick="remove1()">천천히 없애기</button>
+    <button onClick="remove2()">한꺼번에 없애기</button>
+    <div id="container"></div>    
+</body>
+</html>
+
+
+
+

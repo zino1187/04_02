@@ -3,12 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
-    
-</script>    
 <title>Document</title>
+<style>
+#container{
+    width:600px;
+    height:600px;
+    background:yellow;
+    margin:auto;
+}    
+</style>    
+<script>
+var container;
+var arr=new Array();
+var st;
+var index=0;
+
+window.addEventListener("load", function(){
+    container = document.getElementById("container");
+    container.style.backgroundImage="url('../images/t4.jpg')";
+    container.style.backgroundSize="600px 600px"
+    createRect();
+});
+
+function createRect(){
+    for(var a=0;a<20;a++){
+        for(var i=0;i<20;i++){
+            var div = document.createElement("div");
+            div.style.width=28+"px";
+            div.style.height=28+"px";
+            div.style.border="1px solid red";
+            div.style.background="yellow";
+            div.style.float="left";
+            div.style.opacity=0.9;
+            div.addEventListener("mousemove", function(){
+                this.style.opacity=0;
+            });
+            container.appendChild(div);
+            arr.push(div);
+        }
+    }
+}
+
+function showAnswer(){
+    if(index > arr.length-1){
+        clearTimeout(st);
+    }else{
+        arr[index].style.opacity=0;
+        st = setTimeout("showAnswer()",1);
+        index++;
+    }
+}
+</script>    
 </head>
 <body>
-    
+    <button onClick="showAnswer()">정답보기</button>    
+    <div id="container"></div>    
 </body>
 </html>
