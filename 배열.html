@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+/*
+배열이란? 
+1) 사물을 늘어서게 나열한 상태!!
+    전산에서는 사물 대신 데이터를 메모리에 순서있게 올려놓으면됨
+    변수명을 부여하지 않고도 데이터를 접근할 수 있다!!
+*/    
+var arr = new Array(20);
+
+for(var i=0; i<arr.length;i++){
+    if(i<10){//10번째까지
+        arr[i]=0; 
+    }else{//나머지는..
+        arr[i]=1; 
+    }
+    document.write(arr[i]+"<br>");
+}
+</script>    
+</head>
+<body>
+    
+</body>
+</html>

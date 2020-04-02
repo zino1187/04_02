@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/lib.js"></script>
+<script>
+//처리 대상 데이터를 메모리에 올려놓자!!!
+//배열을 선언과 동시에 초기화하는 방법
+var arr = [
+    "food1.jpg",
+    "food2.jpg",
+    "food3.jpg",
+    "food4.jpg",
+    "food5.jpg",
+    "food6.jpg",
+    "food7.jpg",
+    "food8.jpg",
+    "food9.jpg",
+    "food10.jpg"
+];
+//javascript 에서는 변수에 값을 할당하지 않으면  undefined 
+//로 초기화 된다.. java 언어에서는 객체값을 할당하지 않으면 null
+//oracle, mysql 등 데이터베이스에서는 컬럼에 값을 할당하지 않
+//으면 null  이 들어있다.. 
+var img;
+//document.write(img);
+
+function getFood(){
+    //보유한 이미지들 대상으로 랜덤값을 추출하여 화면에 보이게
+    var container = document.getElementById("container");
+    
+    //이미 존재하는 자식요소가 있다면 container 에서 제거하자
+    if(img != undefined){//존재한다면...
+        container.removeChild(img);
+    }
+
+    img = document.createElement("img");
+    img.src="../images/"+arr[getRandom(0, arr.length)];
+    container.appendChild(img);
+}    
+</script>    
+</head>
+<body>
+    <button onClick="getFood()">점심 메뉴 자동 선택</button>    
+    <div id="container">
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

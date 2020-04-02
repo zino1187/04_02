@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+var a=0.1; //비율계수
+var targetH=50; //메뉴바가 늘어날 목표 높이!!!
+var menu; //모든 영역에서 접근해야 하므로...
+
+window.addEventListener("load", function(){
+    createMenu();
+    setInterval("move()",10); //우리대신 컴퓨터가 호출해줌!!
+}); 
+
+//메뉴바 생성
+function createMenu(){
+    menu = document.createElement("div");
+    menu.style.width=100+"px";
+    menu.style.height=50+"px";
+    menu.style.background="red";
+    menu.style.margin="auto";
+    //body에 부착!!
+    document.body.appendChild(menu);
+
+    //처음부터 자동으로 야금야금 할 생각하지 마라!!
+    //먼저 수동이 완성된 후에 나중에 한다..
+    menu.addEventListener("mouseover", function(){
+        //노란색
+        //this.style.background="yellow";
+        //500으로 
+        //this.style.height=500+"px";
+        //move();
+        targetH=500;
+    }); 
+    menu.addEventListener("mouseout", function(){
+        //빨간색
+        //this.style.background="red";
+        //다시 50으로
+        //this.style.height=50+"px";
+        targetH=50;
+    });    
+}
+
+//감속도로 수렴하게 할 함수
+//나의현재값 = 나의현재값 + 일정비율*(목표한값-현재나의값)
+function move(){
+    menu.style.height = parseFloat(menu.style.height)+a*(targetH-parseFloat(menu.style.height))+"px";
+}
+</script>    
+</head>
+<body>
+</body>
+</html>
+
+
+
+

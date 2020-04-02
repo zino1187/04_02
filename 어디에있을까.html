@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+#wrapper{
+    width:800px;
+    height:200px;
+    background:yellow;
+    position: relative;
+}    
+</style>    
+<script>
+var wrapper;    
+addEventListener("load", function(){
+    wrapper = document.getElementById("wrapper");
+    createImage();
+    createBox();
+});
+
+function createBox(){
+    for(var i=0;i<4;i++){
+        var box = document.createElement("div");
+        box.style.position="absolute";
+        box.style.left=(i*200)+"px";
+        box.style.top=0+"px";
+        box.style.width=200+"px";
+        box.style.height=200+"px";
+        box.style.background="blue";
+
+        wrapper.appendChild(box);
+    }
+}
+
+function createImage(){
+    for(var i=0;i<4;i++){
+        var img = document.createElement("img");
+        img.src="../images/pica.png";
+        img.style.position="absolute";
+        img.style.left=(i*200)+"px";
+        img.style.top=0+"px";
+        img.style.width=200+"px";
+        img.style.height=200+"px";
+        img.style.background="blue";
+
+        wrapper.appendChild(img);
+    }
+}
+
+</script>    
+</head>
+<body>
+    <div id="wrapper"></div>
+</body>
+</html>
