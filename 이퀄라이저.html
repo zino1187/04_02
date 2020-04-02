@@ -4,44 +4,70 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
+<style>
+body{
+    background:
+}    
+</style>    
+<script src="../js/lib.js"></script>
 <script>
 var a=0.1; //비율계수
-var targetH=50; //메뉴바가 늘어날 목표 높이!!!
-var menuArray=new Array(7); //모든 영역에서 접근해야 하므로...
+var targetH=new Array(); //메뉴바가 늘어날 목표 높이!!!
+var menuArray=new Array(); //모든 영역에서 접근해야 하므로...
+var color=["red","orange","yellow","greenyellow","blue","navy","purple","chartreuse","green","coral","cyan","deeppink"];
+var w=50;
+var maxH=350;
+var speed=125;
+var count=45;
 
 window.addEventListener("load", function(){
     createMenu();
-
     setInterval("move()",10); //우리대신 컴퓨터가 호출해줌!!
+    setInterval("setRandomHeight()",110);
 }); 
 
 //메뉴바 생성
 function createMenu(){
-    for(var i=0; i<7; i++){
+    var n=0;
+
+    for(var i=0; i<count; i++){
         menu = document.createElement("div");
-        menu.style.width=100+"px";
-        menu.style.height=50+"px";
+        menu.style.width=w+"px";
+        menu.style.height=10+"px";
         menu.style.position="absolute";
-        menu.style.left=i*102+"px";
+        menu.style.left=i*(w+2)+"px";
         menu.style.top=0+"px";
-        menu.style.background="red";
+        menu.style.background=color[n];
+        n++;
+        if(i%color.length==0)n=0;
         //body에 부착!!
         document.body.appendChild(menu);
+        
+        menu.style.fontSize=9+"px";
         menuArray.push(menu);
-    } 
+    }     
+}
+
+function setRandomHeight(){
+    for(var i=0;i<menuArray.length;i++){
+        targetH[i] = getRandom(20,maxH);
+    }
 }
 
 //감속도로 수렴하게 할 함수
 //나의현재값 = 나의현재값 + 일정비율*(목표한값-현재나의값)
 function move(){
-    for(var i=0;i<7;i++){
+    for(var i=0;i<menuArray.length;i++){
         var m = menuArray[i];
-        m.style.height = parseFloat(m.style.height)+a*(targetH-parseFloat(m.style.height))+"px";
+        m.style.height = parseFloat(m.style.height)+a*(targetH[i]-parseFloat(m.style.height))+"px";
+
+        m.innerText=m.style.height;
     }
 }
 </script>    
 </head>
 <body>
+
 </body>
 </html>
 
